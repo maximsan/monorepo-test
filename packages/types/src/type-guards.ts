@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { IChannel, IMessage, ITeam } from "./types";
+import { IChannel, IMessage, ITeam } from './types';
 
 /**
  * Check whether a given value is an array where
@@ -15,9 +15,7 @@ export function isTypedArray<T>(
   check: (x: any) => x is T
 ): arr is T[] {
   if (!Array.isArray(arr)) return false;
-  const mismatch = arr.filter((item) => !check(item));
-  if (mismatch.length > 0) return false;
-  return true;
+  return arr.some((item) => !check(item));
 }
 
 /**
@@ -34,8 +32,8 @@ export function isTypedArray<T>(
  */
 export function isTeam(arg: any): arg is ITeam {
   return (
-    typeof arg.name === "string" &&
-    typeof arg.id === "string" &&
+    typeof arg.name === 'string' &&
+    typeof arg.id === 'string' &&
     Array.isArray(arg.channels)
   );
 }
@@ -47,10 +45,10 @@ export function isTeam(arg: any): arg is ITeam {
  */
 export function isChannel(arg: any): arg is IChannel {
   return (
-    typeof arg.id === "string" &&
-    typeof arg.teamId === "string" &&
-    typeof arg.description === "string" &&
-    typeof arg.name === "string"
+    typeof arg.id === 'string' &&
+    typeof arg.teamId === 'string' &&
+    typeof arg.description === 'string' &&
+    typeof arg.name === 'string'
   );
 }
 
@@ -61,9 +59,9 @@ export function isChannel(arg: any): arg is IChannel {
  */
 export function isMessage(arg: any): arg is IMessage {
   return (
-    typeof arg.teamId === "string" &&
-    typeof arg.channelId === "string" &&
-    typeof arg.userId === "string" &&
-    typeof arg.body === "string"
+    typeof arg.teamId === 'string' &&
+    typeof arg.channelId === 'string' &&
+    typeof arg.userId === 'string' &&
+    typeof arg.body === 'string'
   );
 }
